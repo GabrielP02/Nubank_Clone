@@ -1,5 +1,9 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:nubank/pages/home/findOut/models/card_find_out_more.dart';
+
+import 'models/seguro_vida.dart';
 
 class FindOutMore extends StatelessWidget {
   const FindOutMore({Key? key}) : super(key: key);
@@ -21,22 +25,27 @@ class FindOutMore extends StatelessWidget {
             //espaçamento
             height: 16,
           ),
-          findOutCards(), //chamando a função
+          findOutCards(context), //chamando a função
         ],
       ),
     );
   }
 
 //função onde chamo a classe de cards , e passo os atributos
-  findOutCards() {
+  findOutCards(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(children: [
         CardFindOutMore(
-            imagem: "assets/images/seguroVida.png",
-            title: "Seguro de vida",
-            description: "Cuide bem de quem você ama de um jeito simples",
-            buttonText: "Conhecer")
+          imagem: "assets/images/seguroVida.png",
+          title: "Seguro de vida",
+          description: "Cuide bem de quem você ama de um jeito simples",
+          buttonText: "Conhecer",
+          onPressed: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => SeguroVida()));
+          },
+        )
       ]),
     );
   }

@@ -8,6 +8,7 @@ class CardFindOutMore extends StatelessWidget {
   final String title;
   final String description;
   final String buttonText;
+  final VoidCallback onPressed;
 
   const CardFindOutMore({
     Key? key,
@@ -15,6 +16,7 @@ class CardFindOutMore extends StatelessWidget {
     required this.title,
     required this.description,
     required this.buttonText,
+    required this.onPressed,
   }) : super(key: key);
 
   @override
@@ -47,20 +49,23 @@ class CardFindOutMore extends StatelessWidget {
             style: const TextStyle(color: Colors.grey),
           ),
           const SizedBox(height: 16),
-          Container(
-            //container para criar o botão
-            margin: const EdgeInsets.only(left: 12),
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: backGroundColor,
-              borderRadius: BorderRadius.circular(18),
+          GestureDetector(
+            onTap: onPressed,
+            child: Container(
+              //container para criar o botão
+              margin: const EdgeInsets.only(left: 12),
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: backGroundColor,
+                borderRadius: BorderRadius.circular(18),
+              ),
+              child: Text(
+                buttonText,
+                style: const TextStyle(
+                    color: Colors.white, fontWeight: FontWeight.bold),
+              ),
             ),
-            child: Text(
-              buttonText,
-              style: const TextStyle(
-                  color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-          ),
+          )
         ],
       ),
     );
