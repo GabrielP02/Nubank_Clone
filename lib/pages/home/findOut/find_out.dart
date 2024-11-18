@@ -42,8 +42,8 @@ class FindOutMore extends StatelessWidget {
           description: "Cuide bem de quem você ama de um jeito simples",
           buttonText: "Conhecer",
           onPressed: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => SeguroVida()));
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => SeguroVida()));
           },
         )
       ]),

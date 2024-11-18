@@ -1,4 +1,7 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
+import 'package:nubank/pages/home/Home_page.dart';
 import 'package:nubank/utils/colors_standard.dart';
 
 class SeguroVida extends StatelessWidget {
@@ -8,32 +11,50 @@ class SeguroVida extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.black,
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Padding(
+        padding: const EdgeInsets.only(
+            left: 16.0, right: 16.0), // Espaço na lateral esquerda
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _close(),
-            _SeguroVida(),
-            _Ajuda(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _close(context),
+                _SeguroVida(),
+                _Ajuda(),
+              ],
+            ),
+            const SizedBox(height: 15),
+            Image.asset(
+              "assets/images/personagensSeguro.jpeg",
+              fit: BoxFit.cover,
+              width: 150,
+            ),
+            const SizedBox(height: 15),
+            _Texto(),
+            const SizedBox(height: 15),
+            _Textos2(),
+            const SizedBox(height: 90),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: _botao(),
+            ),
           ],
         ),
-        const SizedBox(height: 15),
-        Image.asset(
-          //imagem
-          "assets/images/personagensSeguro.jpeg",
-          fit: BoxFit.cover,
-          width: 150,
-        ),
-      ]),
+      ),
     );
   }
 
-  _close() {
+  _close(BuildContext context) {
     return GestureDetector(
         onTap: () {},
         child: Container(
           child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => HomePage()));
+              },
               icon: Icon(
                 Icons.close,
                 color: Colors.white,
@@ -46,7 +67,10 @@ class SeguroVida extends StatelessWidget {
       child: const Text(
         'Seguro Vida',
         style: TextStyle(
-            color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            decoration: TextDecoration.none),
       ),
     );
   }
@@ -63,5 +87,129 @@ class SeguroVida extends StatelessWidget {
                 color: Colors.white,
               )),
         ));
+  }
+
+  _Texto() {
+    return Container(
+        child: RichText(
+            text: TextSpan(children: [
+      TextSpan(
+        text: "Toda proteção financeira que você precisa a partir de ",
+        style: TextStyle(
+            color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+      ),
+      TextSpan(
+          text: "R\$4,00/ mês",
+          style: TextStyle(
+              color: backGroundColor,
+              fontSize: 25,
+              fontWeight: FontWeight.bold))
+    ])));
+  }
+
+  _Textos2() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(children: [
+          Icon(
+            Icons.payment,
+            color: backGroundColor,
+          ),
+          SizedBox(
+            width: 12,
+          ),
+          Text(
+            'Deixe até R\$150.000 para quem você ama',
+            style: TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                decoration: TextDecoration.none),
+          ),
+        ]),
+        const SizedBox(height: 12),
+        Row(children: [
+          Icon(
+            Icons.favorite_border,
+            color: backGroundColor,
+          ),
+          SizedBox(
+            width: 12,
+          ),
+          Text(
+            'Proteção para te ajudar com acidentes',
+            style: TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                decoration: TextDecoration.none),
+          ),
+        ]),
+        const SizedBox(height: 12),
+        Row(children: [
+          Icon(
+            Icons.headset_mic,
+            color: backGroundColor,
+          ),
+          SizedBox(
+            width: 12,
+          ),
+          Text(
+            'Um time 100% dedicado a te dar suporte',
+            style: TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                decoration: TextDecoration.none),
+          ),
+        ]),
+        const SizedBox(height: 12),
+        Row(children: [
+          Icon(
+            Icons.query_builder,
+            color: backGroundColor,
+          ),
+          SizedBox(
+            width: 12,
+          ),
+          Text(
+            '97% dos casos são pagos em até 2 dias',
+            style: TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                decoration: TextDecoration.none),
+          ),
+        ]),
+      ],
+    );
+  }
+
+  _botao() {
+    return Container(
+        child: GestureDetector(
+      onTap: () {},
+      child: Container(
+        //container para criar o botão
+        margin:
+            const EdgeInsets.symmetric(horizontal: 25), // Margem nas laterais
+        padding: const EdgeInsets.symmetric(
+            vertical: 20.0,
+            horizontal: 50.0), // Aumenta a área do botão sem afetar o texto
+        decoration: BoxDecoration(
+          color: backGroundColor,
+          borderRadius: BorderRadius.circular(25),
+        ),
+        child: Text(
+          "Fazer Simulação",
+          style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              decoration: TextDecoration.none),
+        ),
+      ),
+    ));
   }
 }
