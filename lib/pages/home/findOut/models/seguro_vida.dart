@@ -10,7 +10,7 @@ class SeguroVida extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black,
+      color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.only(
             left: 16.0, right: 16.0), // Espaço na lateral esquerda
